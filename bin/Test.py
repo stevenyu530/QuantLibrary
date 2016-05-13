@@ -1,6 +1,4 @@
 from DeriativesAnalysisLibrary import *
-from constant_short_rate import *
-from market_environment import *
 
 
 dates = [dt.datetime(2015,1,1), dt.datetime(2015,7,1), dt.datetime(2016,1,1)]
