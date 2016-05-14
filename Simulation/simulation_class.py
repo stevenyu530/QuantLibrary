@@ -22,11 +22,14 @@ class simulation_class(object):
     ========
     generate_time_grid:
         returns time grid of relevant dates for simulation. Same for every simulation class
-    get_instrument_value:
+    get_instrument_values:
         return array of simulated instrument values. E.g. stock prices, commodities prices, volatilities
     """
 
     def __init__(self, name, mkt_env, correlated):
+        # parsing a market_environment object
+        # sanity check is skipped here for simplicity.
+        # requiring extra carefulness when passing a market_environment object to any simulation class.
         try:
             self.name = name
             self.pricing_date = mkt_env.pricing_date
@@ -61,5 +64,39 @@ class simulation_class(object):
         except:
             print "Error in parsing market environment!"
 
+    def generate_time_grid(self):
+        start = self.pricing_date
+        end = self.final_date
+        # pands date_range function
+        # freq: B-Business day, W-Week, M-Month
+        time_grid = pd.date_range(start=start, end=end, freq=self.frequency).to_pydatetime()
+        time_grid = list(time_grid)
 
-    
+        # add  start, end and special_dates into time_grid if exist
+        if start not in time_grid:
+            time_grid.insert(0, start)
+        if end not in time_grid:
+            time_grid.append(end)
+        if len(self.special_dates) > 0:
+            time_grid.extend(self.special_dates)
+            # remove duplicate dates
+            time_grid = list(set(time_grid))
+            # sort time_grid
+            time_grid.sort()
+
+        # parse time_grid into numpy.ndarray
+        self.time_grid = np.array(time_grid)
+
+    def get_instrument_values(self, fixed_seed=True):
+        if self.instrument_values is None:
+            # only generate simulation if there is no instrument values
+            self.generate_paths(fixed_seed=fixed_seed, day_count=365.)
+        elif fixed_seed is False:
+            # Additionly, re-generate simulation is fixed_seed is False
+            self.generate_paths(fixed_seed=fixed_seed, day_count=365.)
+
+        return self.instrument_values
+
+    # method to be implemented in child class
+    def generate_path(self):
+        raise NotImplementedError("Need Implementation!")
