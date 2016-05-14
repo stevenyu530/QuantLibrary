@@ -4,3 +4,4 @@ __author__ = 'StevenYu'
 # packaging file for Simulation
 
 from sn_random_numbers import *
+from simulation_class import *
