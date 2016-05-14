@@ -1,4 +1,4 @@
-from Framework import *
+from ValuationFramework import *
 
 
 dates = [dt.datetime(2015,1,1), dt.datetime(2015,7,1), dt.datetime(2016,1,1)]
@@ -20,3 +20,4 @@ print mkt1.constants
 print mkt1.lists
 print mkt1.curves
 print mkt1.get_curve('short_rate').short_rate
+

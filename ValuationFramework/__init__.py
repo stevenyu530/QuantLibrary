@@ -1,7 +1,7 @@
 __author__ = 'StevenYu'
 
 # QuantLibrary
-# packaging file for Framework
+# packaging file for ValuationFramework
 
 import datetime as dt
 from get_year_deltas import get_year_deltas

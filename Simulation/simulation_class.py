@@ -98,5 +98,5 @@ class simulation_class(object):
         return self.instrument_values
 
     # method to be implemented in child class
-    def generate_path(self):
+    def generate_paths(self, fixed_seed=False, day_count=365.):
         raise NotImplementedError("Need Implementation!")

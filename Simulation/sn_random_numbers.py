@@ -26,7 +26,7 @@ def sn_random_numbers(shape, antithetic=True, moment_matching=True, fixed_seed=F
         np.random.seed(1000)
 
     if antithetic:
-        random = np.random.standard_normal(shape[0], shape[1], shape[2]/2)
+        random = np.random.standard_normal((shape[0], shape[1], shape[2]/2))
         random = np.concatenate((random, -random), axis=2)
     else:
         random = np.random.standard_normal(shape)

@@ -33,6 +33,7 @@ class geometric_brownian_motion(simulation_class):
     def __init__(self, name, mkt_env, correlated=False):
         super(geometric_brownian_motion, self).__init__(name, mkt_env, correlated)
 
+
     def update(self, initial_value=None, volatility=None, final_date=None):
         if initial_value is not None:
             self.initial_value = initial_value
@@ -42,7 +43,8 @@ class geometric_brownian_motion(simulation_class):
             self.final_date = final_date
         self.instrument_values = None
 
-    def generate_path(self, fixed_seed=False, day_count=365.):
+
+    def generate_paths(self, fixed_seed=False, day_count=365.):
         if self.time_grid is None:
             self.generate_time_grid()
 
