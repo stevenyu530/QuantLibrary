@@ -64,6 +64,7 @@ class simulation_class(object):
         except:
             print "Error in parsing market environment!"
 
+
     def generate_time_grid(self):
         start = self.pricing_date
         end = self.final_date
@@ -86,6 +87,7 @@ class simulation_class(object):
 
         # parse time_grid into numpy.ndarray
         self.time_grid = np.array(time_grid)
+
 
     def get_instrument_values(self, fixed_seed=True):
         if self.instrument_values is None:
