@@ -28,7 +28,7 @@ class merton_jump_diffusion(simulation_class):
         returns Monte Carlo paths based on the market parameters
     """
 
-    def __init__(self, name, mkt_env, correlated):
+    def __init__(self, name, mkt_env, correlated=False):
         super(merton_jump_diffusion, self).__init__(name, mkt_env, correlated)
         try:
             # additional parameters
