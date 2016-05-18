@@ -12,7 +12,7 @@ from simulation_class import simulation_class
 class square_root_diffusion(simulation_class):
     """
     Class to genreate simulated paths based on the Square-Root Diffusion model
-    from Cox-Ingersoll-Ross (1985). Euler Discretization approach is applied
+    from Cox-Ingersoll-Ross (1985). Euler Discretization approach is applied, for a full truncation
 
     Attributes:
     ===========
@@ -59,14 +59,35 @@ class square_root_diffusion(simulation_class):
 
         num_dates = len(self.time_grid)
         num_paths = self.paths
-        paths = np.zeros((num_dates, num_paths))
-        paths[0] = self.initial_value
+        paths_1 = np.zeros((num_dates, num_paths))
+        paths_2 = np.zeros_like(paths_1)
+        paths_1[0] = self.initial_value
+        paths_2[0] = self.initial_value
 
         # decide the correct random numbers basted correlation
-        if self.correlated:
-            sn_random_numbers = sn_random_numbers((1, num_dates, num_paths), fixed_seed=fixed_seed)
+        if self.correlated is False:
+            sn = sn_random_numbers((1, num_dates, num_paths), fixed_seed=fixed_seed)
         else:
-            sn_random_numbers = self.random_numbers
+            sn = self.random_numbers
 
-        # Generate paths
+        # Generate paths:
+        for t in range(1, len(self.time_grid)):
+            # time interval
+            dt = (self.time_grid[t] - self.time_grid[t-1]).days / day_count
+
+            # choose the correct random number
+            if self.correlated is False:
+                random_num = sn[t]
+            else:
+                random_num = np.dot(self.cholesky_matrix, sn[:, t, :])
+                random_num = random_num[t]
+
+            # full trunctation with Euler Discretization
+            paths_2[t] = (paths_2[t-1] + self.kappa * (self.theta - np.maximum(0, paths_2[t-1, :])) * dt
+                          + self.volatility * np.sqrt(np.maximum(0, paths_2[t-1, :])) * np.sqrt(dt) * random_num)
+            paths_1[t] = np.maximum(0, paths_2[t])
+
+        self.instrument_values = paths_1
+
+
 
