@@ -1,4 +1,5 @@
 #
+# Author: Steven YU
 # Random number generation is a central task of Monte Carlo simulation.
 # A standard normally distributed random numbers generator is implemented in this function
 # with several variance reduction techniques

@@ -1,3 +1,5 @@
+# Author: Steven YU
+
 from get_year_deltas import *
 
 class constant_short_rate(object):

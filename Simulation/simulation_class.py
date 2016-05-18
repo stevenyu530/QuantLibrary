@@ -1,4 +1,5 @@
 #
+# Author: Steven YU
 # QuantLibrary Simulation
 # simulation_class.py
 #

@@ -1,4 +1,5 @@
 #
+# Author: Steven YU
 # QuantLibrary Simulation
 # merton_jump_diffusion.py
 #
@@ -67,7 +68,7 @@ class merton_jump_diffusion(simulation_class):
         paths[0] = self.initial_value   # set starting value on the first date to be the initial value
 
         if self.correlated is False:
-            # if not correlated with other models, generate Standard Normal Distributed random numbers
+            # if not correlated with other models, generate Standard Normal Distributed random numbersCharlet Duboc
             sn1 = sn_random_numbers((1, num_dates, num_paths), fixed_seed=fixed_seed)
         else:
             # if correlated, use random number as provided in market environment

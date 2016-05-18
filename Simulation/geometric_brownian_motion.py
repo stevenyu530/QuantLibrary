@@ -1,4 +1,5 @@
 #
+# Author: Steven YU
 # QuantLibrary Simulation
 # geometric_brownian_motion.py
 #
