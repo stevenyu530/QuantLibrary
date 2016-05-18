@@ -90,7 +90,7 @@ class simulation_class(object):
         self.time_grid = np.array(time_grid)
 
 
-    def get_instrument_values(self, fixed_seed=True):
+    def get_instrument_values (self, fixed_seed=True):
         if self.instrument_values is None:
             # only generate simulation if there is no instrument values
             self.generate_paths(fixed_seed=fixed_seed, day_count=365.)

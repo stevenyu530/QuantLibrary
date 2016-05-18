@@ -39,7 +39,7 @@ class square_root_diffusion(simulation_class):
         except:
             print "Error parsing market environment parameters"
 
-    def update (self, initial_value=None, volatility=None, kappa=None,
+    def update(self, initial_value=None, volatility=None, kappa=None,
                 theta=None, final_date=None):
         if initial_value is not None:
             self.initial_value = initial_value
@@ -53,7 +53,7 @@ class square_root_diffusion(simulation_class):
             self.final_date = final_date
         self.instrument_values = None
 
-    def generate_paths(self, fixed_seed=True, day_count=365.):
+    def generate_paths(self, fixed_seed=False, day_count=365.):
         if self.time_grid is None:
             self.generate_time_grid()
 
