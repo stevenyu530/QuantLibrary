@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/ValuationFramework" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bin" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Simulation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DerivativesValuation" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
