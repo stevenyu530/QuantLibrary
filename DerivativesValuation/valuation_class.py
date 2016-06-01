@@ -62,11 +62,11 @@ class valuation_class(object):
 
     def delta(self, interval=None, accuracy=4):
         if interval is None:
-            interval = self.underlying.intial_value / 50.
+            interval = self.underlying.initial_value / 50.
         # forward-difference approximation, calculate the left value for numerical Delta
         value_left = self.present_value(fixed_seed=True)
         # numerical underling value for right value
-        initial_delta = self.underlying.initial_val + interval
+        initial_delta = self.underlying.initial_value + interval
         self.underlying.update(initial_value=initial_delta)
         # calculate right value for numberical delta
         value_right = self.present_value(fixed_seed=True)
