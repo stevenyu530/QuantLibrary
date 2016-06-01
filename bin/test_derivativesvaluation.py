@@ -46,3 +46,21 @@ for strike in strike_list:
 print price_list
 print delta_list
 print vega_list
+
+plot_option_stats(strike_list, price_list, delta_list, vega_list)
+
+# More complicated payoff function
+payoff_func = 'np.maximum(0.33 * (maturity_value + max_val) - 40, 0)'
+eur_call_2 = valuation_european('eur_call_2', underlying=gbm, mkt_env= mkt_call, payoff_function=payoff_func)
+
+strike_list = np.arange(34., 46.1, 2.)
+price_list = []
+delta_list = []
+vega_list = []
+for strike in strike_list:
+    eur_call_2.update(strike)
+    price_list.append(eur_call_2.present_value(fixed_seed=True))
+    delta_list.append(eur_call_2.delta())
+    vega_list.append(eur_call_2.vega())
+
+plot_option_stats(strike_list, price_list, delta_list, vega_list)

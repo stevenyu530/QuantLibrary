@@ -5,3 +5,4 @@ __author__ = 'StevenYu'
 
 from valuation_class import valuation_class
 from valuation_european import valuation_european
+from plot_option_stats import plot_option_stats
